@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaza Store - Elegance in Every Purchase</title>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="description" content="Jaza Store - Your Premium Shopping Destination">
+    <meta name="theme-color" content="#2196F3">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jaza Store - Elegance in Every Purchase">
+    <meta property="og:description" content="Discover premium products at unbeatable prices">
+    <meta property="og:image" content="https://jaza-store.com/images/og-image.jpg">
+    <meta property="og:url" content="https://jaza-store.com">
+    <meta property="og:site_name" content="Jaza Store">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jaza Store - Elegance in Every Purchase">
+    <meta name="twitter:description" content="Discover premium products at unbeatable prices">
+    <meta name="twitter:image" content="https://jaza-store.com/images/og-image.jpg">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header class="header" role="banner">
+        <div class="top-header">
+            <div class="left-section">
+                <a href="/" class="logo-container" aria-label="Jaza Store Home">
+                    <img src="./images/logo.png" alt="Jaza Store Logo" class="logo">
+                </a>
+                <!-- Updated Location Container -->
+                <div class="location-container" id="locationContainer">
+                    <button class="location-trigger" id="locationTrigger" aria-expanded="false">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        <span class="current-location">Select Location</span>
+                    </button>
+                    
+                    <div class="location-dropdown" id="locationDropdown" hidden>
+                        <form id="locationForm" class="location-form">
+                            <div class="form-group">
+                                <label for="city-select">Select City:</label>
+                                <select id="city-select" required>
+                                    <option value="">Choose your city</option>
+                                    <option value="nairobi">Nairobi</option>
+                                    <option value="mombasa">Mombasa</option>
+                                    <option value="kisumu">Kisumu</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="location-input">Enter Your Area:</label>
+                                <input 
+                                    type="text" 
+                                    id="location-input" 
+                                    placeholder="E.g. Westlands, Kileleshwa"
+                                    required 
+                                />
+                            </div>
+
+                            <div id="nearest-results" class="results-container" hidden>
+                                <h3>Nearest Store:</h3>
+                                <p id="supermarket-name"></p>
+                                <div class="delivery-options">
+                                    <label class="delivery-label">Delivery Options:</label>
+                                    <div class="option">
+                                        <input type="radio" name="delivery" id="online-delivery" checked>
+                                        <label for="online-delivery">Home Delivery</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" name="delivery" id="pickup">
+                                        <label for="pickup">Store Pickup</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="submit-location">Find Nearest Store</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-section">
+                <form class="search-form" role="search">
+                    <div class="search-wrapper">
+                        <input 
+                            type="search" 
+                            id="search-input" 
+                            class="search-input" 
+                            placeholder="Search for products, brands and categories..."
+                            aria-label="Search products"
+                            autocomplete="off"
+                        >
+                        <button type="submit" class="search-button" aria-label="Search">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </button>
+                        
+                        <!-- Add this div for autocomplete results -->
+                        <div class="search-autocomplete" id="searchAutocomplete" hidden>
+                            <div class="autocomplete-sections">
+                                <div class="autocomplete-section products-section" hidden>
+                                    <h3 class="section-title">
+                                        <i class="fas fa-box" aria-hidden="true"></i> Products
+                                    </h3>
+                                    <ul class="products-list" role="listbox"></ul>
+                                </div>
+                                
+                                <div class="autocomplete-section categories-section" hidden>
+                                    <h3 class="section-title">
+                                        <i class="fas fa-th-large" aria-hidden="true"></i> Categories
+                                    </h3>
+                                    <ul class="categories-list" role="listbox"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <nav class="user-actions" aria-label="User navigation">
+                <a href="/account" class="account-link" aria-label="Your Account">
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                    <span>Account</span>
+                </a>
+                <a href="/cart" class="cart-link" aria-label="Shopping Cart">
+                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                    <span>Cart</span>
+                    <span class="cart-count" aria-label="Cart items">0</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content" role="main">
+        <!-- 1. Hero Section -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-content">
+                <h1 id="hero-title">Elegance in Every Purchase</h1>
+                <p>Discover our curated collection of premium products at affordable prices.</p>
+                <button class="cta-button" aria-label="Start Shopping">Shop Now</button>
+            </div>
+        </section>
+
+        <!-- 2. Categories Navigation -->
+        <nav class="category-navigation" aria-labelledby="categories-title">
+            <h2 id="categories-title" class="section-title">Browse Categories</h2>
+            <ul class="category-grid">
+                <li class="category-card">
+                    <a href="/category/electronics" class="category-link">
+                        <div class="category-image">
+                            <img src="https://via.placeholder.com/250x180?text=Electronics" alt="Electronics category - Browse smartphones, laptops, and other gadgets">
+                        </div>
+                        <div class="category-title">Electronics</div>
+                    </a>
+                </li>
+                <li class="category-card">
+                    <a href="/category/fashion" class="category-link">
+                        <div class="category-image">
+                            <img src="https://via.placeholder.com/250x180?text=Fashion" alt="Fashion category - Explore clothing, accessories, and footwear">
+                        </div>
+                        <div class="category-title">Fashion</div>
+                    </a>
+                </li>
+                <li class="category-card">
+                    <a href="/category/home-kitchen" class="category-link">
+                        <div class="category-image">
+                            <img src="https://via.placeholder.com/250x180?text=Home+%26+Kitchen" alt="Home & Kitchen category - Discover appliances, cookware, and home essentials">
+                        </div>
+                        <div class="category-title">Home & Kitchen</div>
+                    </a>
+                </li>
+                <li class="category-card">
+                    <a href="/category/beauty" class="category-link">
+                        <div class="category-image">
+                            <img src="https://via.placeholder.com/250x180?text=Beauty" alt="Beauty & Personal Care category - Shop skincare, makeup, and grooming products">
+                        </div>
+                        <div class="category-title">Beauty & Personal Care</div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- 3. Featured Products Section -->
+        <section class="featured-products" aria-labelledby="featured-title">
+            <h2 id="featured-title" class="section-title">Featured Products</h2>
+            <div class="product-grid" role="list">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <p>Loading featured products...</p>
+                </div>
+                <noscript>
+                    <p class="fallback-message">Please enable JavaScript to view our featured products.</p>
+                </noscript>
+            </div>
+        </section>
+
+        <!-- 4. Trending Products Section -->
+        <section class="trending-products" aria-labelledby="trending-title">
+            <h2 id="trending-title" class="section-title">
+                Trending Now <span class="trending-icon" aria-hidden="true">🔥</span>
+            </h2>
+            <div class="product-grid">
+                <!-- Products will be loaded dynamically -->
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <p>Loading trending products...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Deals of the Week Section -->
+        <section class="deals-of-week" aria-labelledby="deals-week-title">
+            <h2 id="deals-week-title" class="section-title">
+                Deals of the Week <span class="flash-icon" aria-hidden="true">⚡</span>
+            </h2>
+            <div class="deals-grid">
+                <div class="deal-card">
+                    <div class="deal-badge">
+                        <span class="discount">-60%</span>
+                    </div>
+                    <div class="countdown-timer" data-ends="2025-05-03T23:59:59">
+                        <span class="timer-label">Ends in:</span>
+                        <div class="timer-units">
+                            <span class="days">00</span>d
+                            <span class="hours">00</span>h
+                            <span class="minutes">00</span>m
+                            <span class="seconds">00</span>s
+                        </div>
+                    </div>
+                    <img src="https://via.placeholder.com/300x300" alt="Flash Deal Product" loading="lazy">
+                    <div class="deal-content">
+                        <h3 class="deal-title">Premium Wireless Headphones</h3>
+                        <div class="price-container">
+                            <span class="original-price">KES 15,000</span>
+                            <span class="sale-price">KES 6,000</span>
+                        </div>
+                        <div class="stock-status">
+                            <div class="stock-bar" style="--stock-left: 45%"></div>
+                            <span class="stock-text">Only 9 left in stock</span>
+                        </div>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+                <!-- Add more deal-card elements as needed -->
+            </div>
+        </section>
+
+        <!-- 6. New Arrivals Section -->
+        <section class="new-arrivals" aria-labelledby="new-arrivals-title">
+            <h2 id="new-arrivals-title" class="section-title">
+                New Arrivals <span class="new-badge" aria-hidden="true">✨</span>
+            </h2>
+            <div class="product-grid new-products-grid" role="list">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <p>Loading new arrivals...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Best Sellers Section -->
+        <section class="best-sellers" aria-labelledby="best-sellers-title">
+            <h2 id="best-sellers-title" class="section-title">
+                Best Sellers <span class="best-badge" aria-hidden="true">🏆</span>
+            </h2>
+            <div class="product-grid best-sellers-grid" role="list">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <p>Loading best sellers...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Personalized Recommendations Section -->
+        <section class="recommendations" aria-labelledby="recommendations-title" hidden>
+            <h2 id="recommendations-title" class="section-title">
+                Recommended For You <span class="recommendation-icon" aria-hidden="true">🎯</span>
+            </h2>
+            <div class="recommendations-tabs">
+                <button class="tab-btn active" data-tab="viewed">Because You Viewed</button>
+                <button class="tab-btn" data-tab="related">Others Also Bought</button>
+            </div>
+            <div class="product-grid recommendations-grid" role="list">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <p>Loading recommendations...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Why Choose Jaza Section -->
+        <section class="services-section" aria-labelledby="services-title">
+            <h2 id="services-title" class="section-title">Why Choose Jaza Store</h2>
+            <div class="services-grid" role="list">
+                <div class="service-card" role="listitem">
+                    <div class="service-icon">🚚</div>
+                    <h3 class="service-title">Free & Fast Delivery</h3>
+                    <p class="service-description">Free shipping on orders over $50. Fast delivery within 2-3 business days.</p>
+                </div>
+                <div class="service-card" role="listitem">
+                    <div class="service-icon">🔄</div>
+                    <h3 class="service-title">Easy Returns</h3>
+                    <p class="service-description">30-day return policy. No questions asked.</p>
+                </div>
+                <div class="service-card" role="listitem">
+                    <div class="service-icon">🔒</div>
+                    <h3 class="service-title">Secure Payments</h3>
+                    <p class="service-description">Multiple payment options with advanced security.</p>
+                </div>
+                <div class="service-card" role="listitem">
+                    <div class="service-icon">💬</div>
+                    <h3 class="service-title">24/7 Support</h3>
+                    <p class="service-description">Our support team is available around the clock to assist you.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div id="footer-container">
+            <!-- Footer content will be loaded dynamically -->
+        </div>
+    </footer>
+
+    <!-- Cart modal with improved accessibility -->
+    <div class="cart-modal-container" role="dialog" aria-labelledby="cart-title" aria-hidden="true">
+        <div class="cart-modal">
+            <h2 id="cart-title" class="section-title">Your Cart</h2>
+            <button class="close-cart" aria-label="Close cart">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+            <div class="cart-items">
+                <!-- Cart items will be dynamically inserted here -->
+            </div>
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="total-amount">KES 0</span>
+                </div>
+                <button class="checkout-button">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/products.js" defer></script>
+    <script src="js/cart.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <script src="js/trending.js" defer></script>
+    <script src="js/new-arrivals.js" defer></script>
+    <script src="js/best-sellers.js" defer></script>
+    <script src="js/deals.js" defer></script>
+    <script src="js/recently-viewed.js" defer></script>
+    <script src="js/location.js" defer></script>
+    <script src="js/search.js" type="module" defer></script>
+    <script src="js/recommendations.js" defer></script>
+</body>
+</html>
